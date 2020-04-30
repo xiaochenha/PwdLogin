@@ -21,6 +21,26 @@ spring:
       min-evictable-idle-time-millis: 30000
       filters: stat
       async-init: true
+  redis:
+    host: 192.168.137.129
+    port: 6379
+    password: Qiangwei@123
+    database: 0
+    timeout: 1000s
+    jedis:
+      pool:
+        max-idle: 500
+        min-idle: 50
+        max-wait: -1
+        max-active: -1
+  cache:
+    redis:
+      time-to-live: -1
+  mail:
+    host: smtp.163.com
+    username: 18636370334@163.com
+    password: NULFSQAGNBLCJFPV
+    default-encoding: utf-8
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   type-aliases-package: org.example.PwdLogin.project.entity

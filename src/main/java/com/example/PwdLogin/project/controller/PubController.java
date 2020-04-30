@@ -3,6 +3,7 @@ package com.example.PwdLogin.project.controller;
 import com.example.PwdLogin.common.enums.ErrorState;
 import com.example.PwdLogin.common.pojo.JsonResult;
 import com.example.PwdLogin.common.reqPojo.UserQuery;
+import com.example.PwdLogin.project.service.EmailService;
 import com.example.PwdLogin.project.service.IMemberUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,8 @@ import java.util.List;
 public class PubController {
     @Autowired
     private IMemberUserService userService;
+    @Autowired
+    private EmailService emailService;
     @GetMapping("need_login")
     public JsonResult needLogin(){
         return JsonResult.error(ErrorState.NEED_LOGIN);
@@ -30,6 +33,10 @@ public class PubController {
     @PostMapping("regist")
     public JsonResult regist(@RequestBody UserQuery userQuery){
         return userService.regist(userQuery);
+    }
+    @GetMapping("send_email_code")
+    public JsonResult sendEmailCode(@RequestParam("email") String email){
+        return emailService.sendEmailCode(email);
     }
     @GetMapping("books")
     public JsonResult books(){
